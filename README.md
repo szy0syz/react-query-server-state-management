@@ -15,8 +15,8 @@ What problem does React Query solve?
 
 > Bonnie Schulkin is a **Great Techer** ！
 >
-> Bonnie 讲得明明白白的！
+> Bonnie 讲得明明白白！
 >
-> `React Query` 作者自己出的教程都没 **Bonnie** 讲得明白！！
+> 我也看过 `React Query` 作者自己出的教程，真心话还没 **Bonnie** 讲得明白！！
 
 ![001](images/001.png)
