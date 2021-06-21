@@ -20,3 +20,25 @@ What problem does React Query solve?
 > 我也看过 `React Query` 作者自己出的教程，真心话还没 **Bonnie** 讲得明白！！
 
 ![001](images/001.png)
+
+## First Project! Blog-em Ipsum
+
+- Gets data from `https://jsonplaceholder.typicode.com/`
+- Very simply, focus on React Query concepts
+- 虽然很简单，但请专注于用 React Query 的概念来解决问题
+  - Fetching data
+  - Loading /error states
+  - Reac Query dev tools
+  - Pagination
+  - Prefetching
+  - Mutations
+
+Getting Started
+
+- Create query client
+  - Client that manages queries and cache
+- Apply Query Provider
+  - Provides cache and client config to children
+  - Takes query clients as the value
+- Run useQuery
+  - Hook that queries the server
