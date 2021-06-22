@@ -46,3 +46,15 @@ Getting Started
   - Takes query clients as the value
 - Run useQuery
   - Hook that queries the server
+
+isFetching vs. isLoading
+
+![003](images/003.png)
+
+Dev Tools
+
+- Shows queries (by keys)
+  - status of queryies
+  - last updated timestamp
+- Data explorer
+- Query exporer
