@@ -21,6 +21,10 @@ What problem does React Query solve?
 
 ![001](images/001.png)
 
+此次之外，还新增如下功能：
+
+![002](images/002.png)
+
 ## First Project! Blog-em Ipsum
 
 - Gets data from `https://jsonplaceholder.typicode.com/`
