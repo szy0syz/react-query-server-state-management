@@ -58,3 +58,40 @@ Dev Tools
   - last updated timestamp
 - Data explorer
 - Query exporer
+
+Stale  Data
+
+- Why does it matter if the data is stale?
+- 为什么说数据过期是重要的？
+- Data refetch only triggers for stale data
+- 其实数据重新加载只针对陈旧数据来触发
+  - For example, component remount, window refocus
+  - `staleTime` translates to "max age"
+  - How to tolerate data potentially being out of date?
+  - 如何容忍数据可能过期的情况？
+
+Why is default staleTime set to 0?
+
+![004](images/004.png)
+
+- How is the data on the screen always up to date?
+- is a much better question be asking than
+- Why is my data not updating?
+
+> 如何保证屏幕上的数据始终是最新的？
+>
+> 其实应该问：为什么我的数据不更新？ --> staleTime set to 0
+
+staleTime vs. cacheTime
+
+![005](images/005.png)
+
+> 一个扫帚就能带代表这两者区别！配图是有点精髓！
+
+- `staleTime` is for re-fetching
+- Cache is for data the might be re-used later
+  - query goes into "cold stroage" if there's no active `useQuery`
+  - cache data expires after `cacheTime` (default: five minutes)
+    - how long it's been since the last active `useQuery`
+  - After the cache expores, the data is garbage collected
+- Cache is backup data to display while fetching
