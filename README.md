@@ -86,12 +86,19 @@ staleTime vs. cacheTime
 
 ![005](images/005.png)
 
-> 一个扫帚就能带代表这两者区别！配图是有点精髓！
+> 一个扫帚就能带代表这两者区别,配图有点 👍
 
 - `staleTime` is for re-fetching
+- `staleTime` 代表着重新远程加载数据
 - Cache is for data the might be re-used later
+- 缓存却代表着数据可能在稍后被再次使用
   - query goes into "cold stroage" if there's no active `useQuery`
   - cache data expires after `cacheTime` (default: five minutes)
+  - 缓存数据将在 `cacheTime` 时间后过期
     - how long it's been since the last active `useQuery`
-  - After the cache expores, the data is garbage collected
+    - `cacheTime`到底啥意思？就是说这个数据的生产者 `useQuery` 是在多长时间前调用的？
+    - 也就是说 `useQuery` 被调用后会记录时间，这个时间与 `cacheTime` 比对就确定是否清理缓存
+  - After the cache expires, the data is garbage collected
+  - 当缓存过期后，数据将被垃圾回收♻️
 - Cache is backup data to display while fetching
+- 缓存是一份备份的数据，在远程加载数据时，用它去显示
