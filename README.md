@@ -123,3 +123,47 @@ const { data, isLoading, isError, error } = useQuery("comments", () =>
   - running refetch function 手动运行 refetch 函数
   - automated refetch 设置了自执行的 refetch
   - query invalidation after a mutation 使用 mutation 让数据失效 invalidation
+
+Array as Query Key
+
+- Pass array for the query key, not just a string
+- Treat the query key as a dependency array
+- 把查询件作为一个依赖数组
+  - When key changes, create a new query
+  - 当他们任一一个变化时，就发起一个新的查询
+- Query Function values should be part of the key
+
+- `['comments', post.id]`
+
+Pagination
+
+- Track current page in components state (currentPage)
+- Use query keys that include the page number ["posts", currentPage]
+- Use clicks "next page" or "previous page" button
+  - update currentPage state
+  - fire off new query
+
+```ts
+// 基操分类
+const { data, error, isLoading, isError } = useQuery(
+  ["posts", currentPage],
+  () => fetchPosts(currentPage),
+  {
+    staleTime: 2000,
+  }
+);
+```
+
+Prefetching
+
+![006](images/006.png)
+
+> 用来做啥呢❓
+
+- adds data to cache
+
+- automatically stale (configurable)
+- shows while re-fetching
+  - as long as cache hasn't expired!
+- Prefetching can be used for any anticipated data needs
+  - not just pagination!
