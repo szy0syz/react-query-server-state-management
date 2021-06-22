@@ -102,3 +102,24 @@ staleTime vs. cacheTime
   - 当缓存过期后，数据将被垃圾回收♻️
 - Cache is backup data to display while fetching
 - 缓存是一份备份的数据，在远程加载数据时，用它去显示
+
+Why don't comments refresh?
+
+```ts
+const { data, isLoading, isError, error } = useQuery("comments", () =>
+  fetchComments(post.id)
+);
+```
+
+这是因为
+
+- Every query uses the same key (“`comments`”)
+- Data for queries with known keys only refetched upon trigger
+- 其实很简单，已知 key 的异步查询更新，仅仅只在 `refetched` 再次查询更新 时触发
+- 看底下有 `refetched` 的触发条件
+- Example tirggers:
+  - component remount 组件再次挂载
+  - window refocus 窗口再次被被聚焦
+  - running refetch function 手动运行 refetch 函数
+  - automated refetch 设置了自执行的 refetch
+  - query invalidation after a mutation 使用 mutation 让数据失效 invalidation
