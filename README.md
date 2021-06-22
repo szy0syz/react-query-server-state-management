@@ -1,6 +1,6 @@
 # react-query-server-state-management
 
-What problem does React Query solve?
+## What problem does React Query solve?
 
 - `React Query` maintains cache of server data on client
 - 它在客户端帮我们维护服务端的缓存
@@ -37,7 +37,7 @@ What problem does React Query solve?
   - Prefetching
   - Mutations
 
-Getting Started
+## Getting Started
 
 - Create query client
   - Client that manages queries and cache
@@ -47,11 +47,11 @@ Getting Started
 - Run useQuery
   - Hook that queries the server
 
-isFetching vs. isLoading
+## isFetching vs. isLoading
 
 ![003](images/003.png)
 
-Dev Tools
+## Dev Tools
 
 - Shows queries (by keys)
   - status of queryies
@@ -59,7 +59,7 @@ Dev Tools
 - Data explorer
 - Query exporer
 
-Stale  Data
+## Stale  Data
 
 - Why does it matter if the data is stale?
 - 为什么说数据过期是重要的？
@@ -70,7 +70,7 @@ Stale  Data
   - How to tolerate data potentially being out of date?
   - 如何容忍数据可能过期的情况？
 
-Why is default staleTime set to 0?
+## Why is default staleTime set to 0?
 
 ![004](images/004.png)
 
@@ -82,7 +82,7 @@ Why is default staleTime set to 0?
 >
 > 其实应该问：为什么我的数据不更新？ --> staleTime set to 0
 
-staleTime vs. cacheTime
+## staleTime vs. cacheTime
 
 ![005](images/005.png)
 
@@ -103,7 +103,7 @@ staleTime vs. cacheTime
 - Cache is backup data to display while fetching
 - 缓存是一份备份的数据，在远程加载数据时，用它去显示
 
-Why don't comments refresh?
+## Why don't comments refresh?
 
 ```ts
 const { data, isLoading, isError, error } = useQuery("comments", () =>
@@ -124,7 +124,7 @@ const { data, isLoading, isError, error } = useQuery("comments", () =>
   - automated refetch 设置了自执行的 refetch
   - query invalidation after a mutation 使用 mutation 让数据失效 invalidation
 
-Array as Query Key
+## Array as Query Key
 
 - Pass array for the query key, not just a string
 - Treat the query key as a dependency array
@@ -135,7 +135,7 @@ Array as Query Key
 
 - `['comments', post.id]`
 
-Pagination
+## Pagination
 
 - Track current page in components state (currentPage)
 - Use query keys that include the page number ["posts", currentPage]
@@ -154,16 +154,20 @@ const { data, error, isLoading, isError } = useQuery(
 );
 ```
 
-Prefetching
+## Prefetching
 
 ![006](images/006.png)
 
 > 用来做啥呢❓
 
 - adds data to cache
-
+- 提前把数据放到缓存里，增强体验
 - automatically stale (configurable)
+- 通过配置自动将数据变陈旧
 - shows while re-fetching
+- 在二次加载时还有数据可显示
   - as long as cache hasn't expired!
+  - 前提条件是缓存没过期
 - Prefetching can be used for any anticipated data needs
   - not just pagination!
+  - 预加载可以用于任何数据获取的场景，不仅仅是分页！
