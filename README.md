@@ -59,7 +59,7 @@
 - Data explorer
 - Query exporer
 
-## Stale  Data
+## Stale Data
 
 - Why does it matter if the data is stale?
 - 为什么说数据过期是重要的？
@@ -99,7 +99,7 @@
     - `cacheTime`到底啥意思？就是说这个数据的生产者 `useQuery` 是在多长时间前调用的？
     - 也就是说 `useQuery` 被调用后会记录时间，这个时间与 `cacheTime` 比对就确定是否清理缓存
   - After the cache expires, the data is garbage collected
-  - 当缓存过期后，数据将被垃圾回收♻️
+  - 当缓存过期后，数据将被垃圾回收 ♻️
 - Cache is backup data to display while fetching
 - 缓存是一份备份的数据，在远程加载数据时，用它去显示
 
@@ -158,7 +158,7 @@ const { data, error, isLoading, isError } = useQuery(
 
 ![006](images/006.png)
 
-> 用来做啥呢❓
+> 用来做啥呢 ❓
 
 - adds data to cache
 - 提前把数据放到缓存里，增强体验
@@ -173,3 +173,28 @@ const { data, error, isLoading, isError } = useQuery(
   - 预加载可以用于任何数据获取的场景，不仅仅是分页！
 
 > c2-06 0:0
+
+## Mutations
+
+- Mutation: making a network call that changes data on the server
+- 调用一个网络请求去改变数据，从服务器拉取数据
+  - jsonplaceholder API does'n change server
+  - go through the mechanince of making the change
+  - 这里机械方式的更新 应该是要强调更新的力度，是不说二话的更新吧
+- Day Spa app will demonstrate showing changes to user
+- Mutation 到底是用来做啥子的？
+  - Optimistic updates (assume change will happen)
+  - 啥子是乐观更新 (假设请求是成功的)
+  - Update React Query cache with data returned from the server
+  - 更新缓存使用服务端返回的数据
+  - Trigger re-fetch of relevant data (invalidation)
+  - 使用 invalidation，触发再加载更新相关数据
+
+## useMutation
+
+- Similar to useQuery, but:
+  - returs `mutate` function
+  - doesn't need query key
+  - isLoading, but no isFetching
+  - by default, no retries (configurable!)
+  - 默认情况没有 重试机制，但可以配置！

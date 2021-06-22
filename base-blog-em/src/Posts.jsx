@@ -20,8 +20,12 @@ export function Posts() {
   useEffect(() => {
     if (currentPage < maxPostPage) {
       const nextPage = currentPage + 1;
-      queryClient.prefetchQuery(["posts", nextPage], () =>
-        fetchPosts(nextPage)
+      queryClient.prefetchQuery(
+        ["posts", nextPage],
+        () => fetchPosts(nextPage),
+        {
+          staleTime: 15000,
+        }
       );
     }
   }, [currentPage, queryClient]);
@@ -31,8 +35,9 @@ export function Posts() {
     ["posts", currentPage],
     () => fetchPosts(currentPage),
     {
-      staleTime: 2000,
+      staleTime: 15000,
       keepPreviousData: true,
+      refetchOnWindowFocus: false,
     }
   );
 
@@ -67,7 +72,7 @@ export function Posts() {
         >
           Previous page
         </button>
-        <span>Page {currentPage + 1}</span>
+        <span>Page {currentPage}</span>
         <button
           disabled={+currentPage >= +maxPostPage}
           onClick={() => {
