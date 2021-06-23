@@ -198,3 +198,16 @@ const { data, error, isLoading, isError } = useQuery(
   - isLoading, but no isFetching
   - by default, no retries (configurable!)
   - 默认情况没有 重试机制，但可以配置！
+
+## Blog-em Ipsum Summary
+
+> 👍
+
+- Install package, create QueryClient and add QueryProvider
+- `useQuery` for data
+  - return object also includes `isLoading` / `isFetching` and `error`
+- `staleTime` for wwhether or not to re-fetch (no trigger)
+- `createTime` for how long to hold on to data after inactivity
+- query keys as dependency arrays
+- pagination and pre-fetching
+- `useMutation` for server side-effects
