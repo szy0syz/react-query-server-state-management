@@ -206,8 +206,81 @@ const { data, error, isLoading, isError } = useQuery(
 - Install package, create QueryClient and add QueryProvider
 - `useQuery` for data
   - return object also includes `isLoading` / `isFetching` and `error`
-- `staleTime` for wwhether or not to re-fetch (no trigger)
-- `createTime` for how long to hold on to data after inactivity
+- `staleTime` for whether or not to re-fetch (no trigger)
+- `cacheTime` for how long to hold on to data after inactivity
 - query keys as dependency arrays
 - pagination and pre-fetching
 - `useMutation` for server side-effects
+
+## Infinite SWAPI
+
+- Infinite scroll
+  - fetch new data "just time" as user scrolls
+  - more efficient than fetching all data at once
+- Fetch new data when...
+  - user clicks a button
+  - user scrolls to certain point on the page
+
+## useInfiniteQuery
+
+- Requires different API format than pagination
+- Hence new project!
+- Pagination
+  - track current page in component state
+  - new query updates page number
+- `useInfiniteQuery` tracks next query 最终下一次查询
+  - next query is returned as part of the data
+  - 下一次查询数据被返回在这次查询的一个字段里
+  - 格式如下：
+
+```json
+{
+  "count": 37,
+  "next": "http://swapi.dev/api/species/?page=2",
+  "previous": null,
+  "result": " [ ... ] "
+}
+```
+
+Shape of useInfiniteQuery Data
+
+- Shape of data different than `useQuery`
+- Object with two properties:
+  - `pages`
+  - `pageParams`
+- Every query has its own element in the `pages` array
+- `pageParams` tracks the keys of queries that have been retrieved
+  - rarely used, won't use here
+
+useInfiniteQuery Syntax
+
+- `pageParam` is a parameter passed to the queryFn
+  - `useInfiniteQuery("sw-people", ({ pageParam = defaultUrl }) => fetchUrl(pageParam)`
+  - Current value of `pageParam` is maintained by React-Query
+- useInfiniteQuery options
+  - getNextPageParam: (lastPage, allPages)
+    - Updates `pageParam`
+    - Migth use all of the page of data (allPages)
+    - we will use just the `lastPage` of data (specifically the `next` property)
+
+> 看来有必要根据相对合适的数据结构，重构下无限加载的接口。
+
+React Infinite Scroller
+
+- Works really nicely with useInfiniteQuery
+- Populate two props for InfiniteScroll compoent:
+  - loadMore = {fetchNextPage}
+  - hasMore = {hasNextPage}
+- Component takes care of datecting when to load more
+- `Data in data.pages[x].results`
+
+Infinite Scroll Summary
+
+- React Query manages
+  - pageParam for next page to be fetched
+    - getNextPageParam option
+    - cloud be from lastPage, or allPage
+  - hasNextPage
+    - boolean indicating whether `pageParam` is `undefined`
+- Component handles calling fetchNextPage
+  - use hasNextPage value to determin when to stop
