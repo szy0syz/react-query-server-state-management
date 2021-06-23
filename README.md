@@ -306,3 +306,5 @@ Including Dev Tools
 - For create-react-app `npm start` runs with NODE_ENV = "development"
 - dev tools won't appear when app is built
   - NODE_ENV = 'prodction'
+
+> c4-04 0_0
