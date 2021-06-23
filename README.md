@@ -284,3 +284,25 @@ Infinite Scroll Summary
     - boolean indicating whether `pageParam` is `undefined`
 - Component handles calling fetchNextPage
   - use hasNextPage value to determin when to stop
+
+React Query in Larger App
+
+> React-Query 怎么用在大型项目
+
+- centralizing fetching indicator / error handling
+- 配置中心化的fetching函数和集中处理请求错误
+- refetching data
+- 配置失败重加载数据机制
+- integrating with auth
+- 集成授权机制
+- dependent queries
+- testing
+- more examples of `useQuery`, muatation, pagination, prefetching
+
+Including Dev Tools
+
+- Dev tools are smart!
+  - don't show when process.env.NODE_ENV === "prodction"
+- For create-react-app `npm start` runs with NODE_ENV = "development"
+- dev tools won't appear when app is built
+  - NODE_ENV = 'prodction'
