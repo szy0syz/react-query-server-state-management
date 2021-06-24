@@ -327,7 +327,9 @@ Including Dev Tools
     - 应该是说：因为用hook抽离了状态，所以我们可以把组件当作没有state的纯展示组件，而发生任何状态更新时，调用发action给hook，然后hook更新完后，数据自然也更新了，页面自然也更新了！
     - 这还是原来 `React` 的那套数据流转机制：**“单向数据流”**
 
-useIsFetching
+## Centralized Fetching indicator
+
+> 中心化的加载指示器
 
 ![007](images/007.png)
 
@@ -335,4 +337,6 @@ useIsFetching
 - `import { useIsFetching } from 'react-query'`
 - 因为是单例的原因
 
-> c4-04 0_0
+## Centralized Error handler
+
+> c4-07 0_0
