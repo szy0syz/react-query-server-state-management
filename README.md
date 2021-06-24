@@ -307,4 +307,32 @@ Including Dev Tools
 - dev tools won't appear when app is built
   - NODE_ENV = 'prodction'
 
+### Custom Hooks
+
+- in larger apps, make custom hook for each type of data
+- 我们在大型app项目中，应该封装自定义hook来管理各类数据，那有啥子好处吗？
+  - can access from multiple components
+  - 能够在多个组件或模块中被访问
+  - no risk of mixing up keys
+  - 没有混合 `query key` 的风险 ?
+  - query function encapsulated in custom hook
+  - 可以将 查询函数 封装在自动以钩子中，这不...
+  - abstracts implementation from display layer
+  - 可以从显示层中将业务逻辑抽象实现
+    - update hook if you change implemnetation
+    - 视图发生改变时，直接使用hook更新
+    - no need to update components
+    - 而不需要更新组件
+    - 上面这两句话到底怎么理解才好...
+    - 应该是说：因为用hook抽离了状态，所以我们可以把组件当作没有state的纯展示组件，而发生任何状态更新时，调用发action给hook，然后hook更新完后，数据自然也更新了，页面自然也更新了！
+    - 这还是原来 `React` 的那套数据流转机制：**“单向数据流”**
+
+useIsFetching
+
+![007](images/007.png)
+
+- 通用全局的 isFetching
+- `import { useIsFetching } from 'react-query'`
+- 因为是单例的原因
+
 > c4-04 0_0
